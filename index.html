@@ -1,53 +1,392 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yüce Tat</title>
+  <meta charset="UTF-8">
 
-<style>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+  <meta
+    name="description"
+    content="Yüce Tat Çiğ Köfte - Adıyamanlı Mehmet Usta"
+  >
 
-body{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:#111;
-font-family:Arial,Helvetica,sans-serif;
-overflow:hidden;
-}
+  <meta name="theme-color" content="#070401">
 
-img{
-width:320px;
-max-width:85%;
-animation:fade 2s ease forwards;
-opacity:0;
-}
+  <title>Yüce Tat Çiğ Köfte</title>
 
-@keyframes fade{
-from{
-opacity:0;
-transform:scale(.8);
-}
-to{
-opacity:1;
-transform:scale(1);
-}
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-</style>
+    html {
+      background: #050301;
+    }
 
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(
+          circle at center,
+          #2b1606 0%,
+          #0c0602 48%,
+          #020100 100%
+        );
+      overflow-x: hidden;
+    }
+
+    .page {
+      position: relative;
+      width: min(100%, 1024px);
+      margin: 0 auto;
+      overflow: hidden;
+      background: #050301;
+      box-shadow:
+        0 0 35px rgba(0, 0, 0, 0.9),
+        0 0 80px rgba(166, 100, 14, 0.12);
+
+      opacity: 0;
+      transform: scale(1.025);
+      filter: blur(5px);
+
+      animation:
+        pageReveal 2.4s ease-out forwards;
+    }
+
+    .background-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* Menüye Giriş görselinin üzerindeki görünmez tıklama alanı */
+    .menu-link {
+      position: absolute;
+
+      left: 23%;
+      top: 82.1%;
+
+      width: 54%;
+      height: 9.2%;
+
+      z-index: 20;
+      border-radius: 18px;
+      text-decoration: none;
+      cursor: pointer;
+
+      opacity: 0;
+      animation:
+        menuAreaReveal 1.2s ease-out 3.2s forwards;
+    }
+
+    .menu-link::before {
+      content: "";
+      position: absolute;
+      inset: 7%;
+      border-radius: 18px;
+
+      box-shadow:
+        0 0 12px rgba(255, 218, 118, 0.15),
+        0 0 35px rgba(255, 175, 21, 0.08);
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+    }
+
+    .menu-link:hover::before,
+    .menu-link:focus-visible::before {
+      transform: scale(1.025);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 219, 120, 0.1),
+          transparent 65%
+        );
+
+      box-shadow:
+        0 0 20px rgba(255, 232, 165, 0.65),
+        0 0 55px rgba(255, 173, 24, 0.36);
+    }
+
+    .menu-link:active::before {
+      transform: scale(0.97);
+    }
+
+    .menu-link:focus-visible {
+      outline: 2px solid #ffd76d;
+      outline-offset: -8px;
+    }
+
+    /* Sağ taraftaki ilave yıldız efektleri */
+    .sparkles {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+
+      background: #fff8d3;
+
+      box-shadow:
+        0 0 7px #ffffff,
+        0 0 15px #ffd36a,
+        0 0 28px #e59618;
+
+      opacity: 0;
+      animation: sparkle 3.2s ease-in-out infinite;
+    }
+
+    .sparkle::before,
+    .sparkle::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 238, 181, 0.95),
+        transparent
+      );
+      transform: translate(-50%, -50%);
+    }
+
+    .sparkle::before {
+      width: 26px;
+      height: 1px;
+    }
+
+    .sparkle::after {
+      width: 1px;
+      height: 26px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(255, 238, 181, 0.95),
+        transparent
+      );
+    }
+
+    .s1 {
+      top: 14%;
+      right: 8%;
+      animation-delay: 0.2s;
+    }
+
+    .s2 {
+      top: 29%;
+      right: 14%;
+      animation-delay: 1.1s;
+    }
+
+    .s3 {
+      top: 45%;
+      right: 6%;
+      animation-delay: 2.1s;
+    }
+
+    .s4 {
+      top: 61%;
+      right: 12%;
+      animation-delay: 0.8s;
+    }
+
+    .s5 {
+      top: 76%;
+      right: 7%;
+      animation-delay: 1.7s;
+    }
+
+    .s6 {
+      top: 90%;
+      right: 15%;
+      animation-delay: 2.6s;
+    }
+
+    /* Sayfanın üstünden geçen hafif ışık */
+    .light-sweep {
+      position: absolute;
+      top: -25%;
+      left: -70%;
+      z-index: 9;
+
+      width: 45%;
+      height: 150%;
+
+      pointer-events: none;
+
+      background: linear-gradient(
+        105deg,
+        transparent 0%,
+        rgba(255, 231, 159, 0.015) 37%,
+        rgba(255, 222, 119, 0.13) 49%,
+        rgba(255, 239, 185, 0.025) 61%,
+        transparent 100%
+      );
+
+      transform: skewX(-12deg);
+
+      animation:
+        lightSweep 9s ease-in-out 2.5s infinite;
+    }
+
+    @keyframes pageReveal {
+      0% {
+        opacity: 0;
+        transform: scale(1.025);
+        filter: blur(5px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes menuAreaReveal {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes sparkle {
+      0%,
+      100% {
+        opacity: 0.08;
+        transform: scale(0.4) rotate(0deg);
+      }
+
+      38% {
+        opacity: 1;
+        transform: scale(1.6) rotate(25deg);
+      }
+
+      55% {
+        opacity: 0.35;
+        transform: scale(0.8) rotate(45deg);
+      }
+    }
+
+    @keyframes lightSweep {
+      0% {
+        left: -70%;
+        opacity: 0;
+      }
+
+      18% {
+        opacity: 0.45;
+      }
+
+      50% {
+        opacity: 0.22;
+      }
+
+      78% {
+        opacity: 0;
+      }
+
+      100% {
+        left: 135%;
+        opacity: 0;
+      }
+    }
+
+    @media (min-width: 1025px) {
+      body {
+        padding: 0 18px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        width: 100%;
+        box-shadow: none;
+      }
+
+      .menu-link {
+        left: 20%;
+        width: 60%;
+        top: 81.8%;
+        height: 9.7%;
+      }
+
+      .sparkle {
+        transform-origin: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .page {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        animation: none;
+      }
+
+      .menu-link {
+        opacity: 1;
+        animation: none;
+      }
+
+      .sparkle,
+      .light-sweep {
+        animation: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<img src="images/logo.png" alt="Yüce Tat Logo">
+  <main class="page">
+
+    <img
+      src="images/arka-plan.png"
+      class="background-image"
+      alt="Yüce Tat Çiğ Köfte - Adıyamanlı Mehmet Usta giriş sayfası"
+    >
+
+    <div class="light-sweep" aria-hidden="true"></div>
+
+    <div class="sparkles" aria-hidden="true">
+      <span class="sparkle s1"></span>
+      <span class="sparkle s2"></span>
+      <span class="sparkle s3"></span>
+      <span class="sparkle s4"></span>
+      <span class="sparkle s5"></span>
+      <span class="sparkle s6"></span>
+    </div>
+
+    <a
+      class="menu-link"
+      href="menu.html"
+      aria-label="Menüye giriş"
+      title="Menüye giriş"
+    ></a>
+
+  </main>
 
 </body>
 </html>

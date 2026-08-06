@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta
+    name="description"
+    content="Yüce Tat Çiğ Köfte dijital menüsü"
+  >
+
+  <meta name="theme-color" content="#080401">
+
+  <title>Yüce Tat | Menü</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: #050301;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: #f7e5b2;
+      font-family: Georgia, "Times New Roman", serif;
+      background: #050301;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page {
+      position: relative;
+      width: min(100%, 1024px);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 22px 14px 50px;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          rgba(5, 3, 1, 0.76),
+          rgba(5, 3, 1, 0.91)
+        ),
+        url("images/arka-plan.png")
+        center top / cover
+        fixed
+        no-repeat;
+    }
+
+    .page::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+
+      background:
+        radial-gradient(
+          circle at 50% 8%,
+          rgba(255, 186, 48, 0.16),
+          transparent 26%
+        ),
+        linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.58),
+          transparent 24%,
+          transparent 76%,
+          rgba(0, 0, 0, 0.58)
+        );
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      width: min(100%, 820px);
+      margin: 0 auto;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 8px 0 24px;
+      animation: heroReveal 1.25s ease both;
+    }
+
+    .logo {
+      display: block;
+      width: min(220px, 60vw);
+      height: auto;
+      margin: 0 auto 12px;
+
+      filter:
+        drop-shadow(0 0 15px rgba(255, 195, 59, 0.45))
+        drop-shadow(0 0 32px rgba(255, 136, 0, 0.18));
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 8vw, 62px);
+      line-height: 1;
+      letter-spacing: 4px;
+      color: #f2c55e;
+      text-transform: uppercase;
+
+      text-shadow:
+        0 0 12px rgba(255, 192, 61, 0.42),
+        0 4px 14px rgba(0, 0, 0, 0.95);
+    }
+
+    .hero p {
+      margin-top: 10px;
+      color: #dac491;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(14px, 3.7vw, 19px);
+      letter-spacing: 0.8px;
+    }
+
+    .ornament {
+      width: min(390px, 86%);
+      height: 2px;
+      margin: 21px auto 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #b77b18 17%,
+          #ffe29a 50%,
+          #b77b18 83%,
+          transparent
+        );
+
+      box-shadow:
+        0 0 10px rgba(255, 188, 54, 0.55),
+        0 0 25px rgba(255, 153, 0, 0.18);
+    }
+
+    .category-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+
+      display: flex;
+      gap: 9px;
+      overflow-x: auto;
+      padding: 11px 4px 15px;
+      margin-bottom: 8px;
+
+      scrollbar-width: none;
+
+      background:
+        linear-gradient(
+          rgba(5, 3, 1, 0.96),
+          rgba(5, 3, 1, 0.84),
+          transparent
+        );
+
+      backdrop-filter: blur(8px);
+    }
+
+    .category-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .category-nav a {
+      flex: 0 0 auto;
+      padding: 10px 16px;
+
+      color: #efd18a;
+      text-decoration: none;
+      white-space: nowrap;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+
+      border: 1px solid rgba(218, 158, 42, 0.68);
+      border-radius: 999px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(44, 27, 9, 0.86),
+          rgba(9, 5, 2, 0.92)
+        );
+
+      box-shadow:
+        inset 0 0 12px rgba(255, 196, 69, 0.06),
+        0 4px 12px rgba(0, 0, 0, 0.42);
+    }
+
+    .category-nav a:active {
+      transform: scale(0.97);
+    }
+
+    .menu-section {
+      scroll-margin-top: 76px;
+      margin-top: 28px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 14px;
+    }
+
+    .section-icon {
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      flex: 0 0 43px;
+
+      font-size: 23px;
+
+      border: 1px solid rgba(235, 177, 59, 0.72);
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 203, 81, 0.16),
+          rgba(10, 6, 2, 0.9)
+        );
+
+      box-shadow:
+        0 0 17px rgba(211, 139, 22, 0.2);
+    }
+
+    .section-heading h2 {
+      font-size: clamp(25px, 6vw, 37px);
+      letter-spacing: 1.5px;
+      color: #edc46b;
+
+      text-shadow:
+        0 0 10px rgba(255, 187, 51, 0.28),
+        0 3px 9px rgba(0, 0, 0, 0.9);
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(211, 151, 34, 0.68),
+          transparent
+        );
+    }
+
+    .product-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .product-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 17px 17px 16px;
+      overflow: hidden;
+
+      border: 1px solid rgba(207, 148, 36, 0.57);
+      border-radius: 17px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(36, 22, 8, 0.88),
+          rgba(7, 4, 2, 0.94)
+        );
+
+      box-shadow:
+        inset 0 0 18px rgba(255, 194, 67, 0.045),
+        0 7px 20px rgba(0, 0, 0, 0.5);
+
+      opacity: 0;
+      transform: translateY(15px);
+      animation: cardReveal 0.7s ease forwards;
+    }
+
+    .product-card:nth-child(2) {
+      animation-delay: 0.08s;
+    }
+
+    .product-card:nth-child(3) {
+      animation-delay: 0.16s;
+    }
+
+    .product-card:nth-child(4) {
+      animation-delay: 0.24s;
+    }
+
+    .product-card::before {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      pointer-events: none;
+
+      border: 1px solid rgba(255, 219, 130, 0.11);
+      border-radius: 12px;
+    }
+
+    .product-info {
+      position: relative;
+      z-index: 2;
+      min-width: 0;
+    }
+
+    .product-name {
+      color: #f3d487;
+      font-size: clamp(18px, 4.8vw, 24px);
+      line-height: 1.2;
+    }
+
+    .product-description {
+      margin-top: 6px;
+      color: #b9a67e;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .price {
+      position: relative;
+      z-index: 2;
+      min-width: 69px;
+      padding: 9px 10px;
+      text-align: center;
+
+      color: #ffe3a0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+
+      border: 1px solid rgba(232, 175, 64, 0.64);
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(83, 51, 12, 0.66),
+          rgba(17, 10, 3, 0.9)
+        );
+
+      box-shadow:
+        inset 0 0 10px rgba(255, 202, 85, 0.08),
+        0 0 13px rgba(222, 146, 20, 0.13);
+    }
+
+    .notice {
+      margin: 32px 0 8px;
+      padding: 18px;
+      text-align: center;
+
+      border: 1px solid rgba(201, 144, 37, 0.48);
+      border-radius: 17px;
+
+      background:
+        rgba(10, 6, 2, 0.8);
+
+      box-shadow:
+        inset 0 0 18px rgba(255, 194, 65, 0.04);
+    }
+
+    .notice strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #eac569;
+      font-size: 18px;
+    }
+
+    .notice span {
+      color: #b8a579;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .footer-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 11px;
+      margin-top: 28px;
+    }
+
+    .footer-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 47px;
+      padding: 13px 21px;
+
+      color: #f0d28a;
+      text-decoration: none;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+
+      border: 1px solid rgba(208, 147, 35, 0.66);
+      border-radius: 999px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(45, 27, 8, 0.85),
+          rgba(8, 5, 2, 0.95)
+        );
+
+      box-shadow:
+        inset 0 0 12px rgba(255, 201, 79, 0.05),
+        0 6px 17px rgba(0, 0, 0, 0.45);
+    }
+
+    .sparkle {
+      position: fixed;
+      z-index: 1;
+      width: 5px;
+      height: 5px;
+      pointer-events: none;
+
+      border-radius: 50%;
+      background: #fff5ca;
+
+      box-shadow:
+        0 0 7px #fff,
+        0 0 16px #ffd264,
+        0 0 30px #dc8b11;
+
+      animation: sparkle 3s ease-in-out infinite;
+    }
+
+    .s1 {
+      top: 13%;
+      right: 6%;
+    }
+
+    .s2 {
+      top: 42%;
+      left: 5%;
+      animation-delay: 1.1s;
+    }
+
+    .s3 {
+      top: 69%;
+      right: 9%;
+      animation-delay: 2s;
+    }
+
+    .s4 {
+      bottom: 8%;
+      left: 8%;
+      animation-delay: 0.7s;
+    }
+
+    @keyframes heroReveal {
+      from {
+        opacity: 0;
+        transform: translateY(-13px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes cardReveal {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes sparkle {
+      0%,
+      100% {
+        opacity: 0.08;
+        transform: scale(0.45);
+      }
+
+      45% {
+        opacity: 1;
+        transform: scale(1.7);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        padding-left: 11px;
+        padding-right: 11px;
+        background-attachment: scroll;
+      }
+
+      .product-card {
+        padding: 15px 14px;
+      }
+
+      .price {
+        min-width: 64px;
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .product-card {
+        grid-template-columns: 1fr;
+      }
+
+      .price {
+        justify-self: start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero,
+      .product-card,
+      .sparkle {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <span class="sparkle s1" aria-hidden="true"></span>
+    <span class="sparkle s2" aria-hidden="true"></span>
+    <span class="sparkle s3" aria-hidden="true"></span>
+    <span class="sparkle s4" aria-hidden="true"></span>
+
+    <div class="content">
+
+      <header class="hero">
+
+        <img
+          src="images/logo.png"
+          alt="Yüce Tat Çiğ Köfte"
+          class="logo"
+        >
+
+        <h1>Menümüz</h1>
+
+        <p>
+          Adıyamanlı Mehmet Usta’nın geleneksel lezzetleri
+        </p>
+
+        <div class="ornament"></div>
+
+      </header>
+
+      <nav class="category-nav" aria-label="Menü kategorileri">
+        <a href="#durumler">Dürümler</a>
+        <a href="#porsiyonlar">Porsiyonlar</a>
+        <a href="#paketler">Paketler</a>
+        <a href="#icecekler">İçecekler</a>
+        <a href="#ekstralar">Ekstralar</a>
+      </nav>
+
+      <section class="menu-section" id="durumler">
+
+        <div class="section-heading">
+          <span class="section-icon">🌯</span>
+          <h2>Dürümler</h2>
+          <span class="section-line"></span>
+        </div>
+
+        <div class="product-list">
+
+          <article class="product-card">
+            <div class="product-info">
+              <h3 class="product-name">Klasik Çiğ Köfte Dürüm</h3>
+              <p class="product-description">
+                Lavaş, çiğ köfte, marul, maydanoz, limon ve özel sos.
+              </p>
+            </div>
+            <div class="price">₺—</div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-info">
+              <h3 class="product-name">Mega Dürüm</h3>
+              <p class="product-description">
+                Bol çiğ köfte, taze yeşillik ve özel sosla doyurucu dürüm.
+              </p>
+            </div>
+            <div class="price">₺—</div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-info">
+              <h3 class="product-name">Doritoslu Dürüm</h3>
+              <p class="product-description">
+                Çıtır cips, çiğ köfte, yeşillik ve özel sos.
+              </p>
+            </div>
+            <div class="price">₺—</div>
+          </article>
+
+        </div>
+
+      </section>
+
+      <section class="menu-section" id="porsiyonlar">
+
+        <div class="section-heading">
+          <span class="section-icon">🍽️</span>
+          <h2>Porsiyonlar</h2>
+          <span class="section-line"></span>
+        </div>
+
+        <div class="product-list">
+
+          <article class="product-card">
+            <div class="product-info">
+              <h3 class="product-name">Tek Kişilik Porsiyon</h3>
+              <p class="product-description">
+                Çiğ köfte, lavaş, bol yeşillik, limon ve sos.
+              </p>
+            </div>
+            <div class="price">₺—</div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-info">
+              <h3 class="product-name">İki Kişilik Porsiyon</h3>
+              <p class="product-description">
+                Paylaşmalık çiğ köfte, lavaş, yeşillik, limon ve sos.
+              </p>
+            </div>
+            <div class="price">₺—</div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-info">
+              <h3 class="product-name">Aile Boyu Porsiyon</h3>
+              <p class="product-description">
+                Kalabalık sofralar için bol malzemeli özel sunum.
+              </p>
+            </div>
+            <div class="price">₺—</div>
+          </article>
+
+        </div>
+
+      </section>
+
+      <section class="menu-section" id="paketler">
+
+        <div class="section-heading">
+          <span class="section-icon">📦</span>
+          <h2>Paketler</h2>
+          <span class="section-line"></span>
+        </div>
+
+        <div class="product-list">
+
+          <article class="product-card">
+            <div class="product-info">
+              <h3 class="product-name">500 Gram Çiğ Köfte</h3>
+              <p class="product-description">
+                Lavaş, yeşillik, limon ve sos seçenekleriyle.
+              </p>
+            </div>
+            <div class="price">₺—</div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-info">
+              <h3 class="product-name">1 Kilogram Çiğ Köfte</h3>
+              <p class="product-description">
+                Aile ve davet sofralarına özel paket.
+              </p>
+            </div>
+            <div class="price">₺—</div>
+          </article>
+
+        </div>
+
+      </section>
+
+      <section class="menu-section" id="icecekler">
+
+        <div class="section-heading">
+          <span class="section-icon">🥤</span>
+          <h2>İçecekler</h2>
+          <span class="section-line"></span>
+        </div>
+
+        <div class="product-list">
+
+          <article class="product-card">
+            <div class="product-info">
+              <h3 class="product-name">Ayran</h3>
+              <p class="product-description">
+                Soğuk servis edilir.
+              </p>
+            </div>
+            <div class="price">₺—</div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-info">
+              <h3 class="product-name">Şalgam</h3>
+              <p class="product-description">
+                Acılı veya acısız seçenekleriyle.
+              </p>
+            </div>
+            <div class="price">₺—</div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-info">
+              <h3 class="product-name">Kutu İçecek</h3>
+              <p class="product-description">
+                Mevcut çeşitleri işletmemize sorabilirsiniz.
+              </p>
+            </div>
+            <div class="price">₺—</div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-info">
+              <h3 class="product-name">Su</h3>
+              <p class="product-description">
+                Soğuk servis edilir.
+              </p>
+            </div>
+            <div class="price">₺—</div>
+          </article>
+
+        </div>
+
+      </section>
+
+      <section class="menu-section" id="ekstralar">
+
+        <div class="section-heading">
+          <span class="section-icon">🍋</span>
+          <h2>Ekstralar</h2>
+          <span class="section-line"></span>
+        </div>
+
+        <div class="product-list">
+
+          <article class="product-card">
+            <div class="product-info">
+              <h3 class="product-name">Ekstra Lavaş</h3>
+              <p class="product-description">
+                Taze ve yumuşak lavaş.
+              </p>
+            </div>
+            <div class="price">₺—</div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-info">
+              <h3 class="product-name">Ekstra Sos</h3>
+              <p class="product-description">
+                Nar ekşisi veya özel acı sos.
+              </p>
+            </div>
+            <div class="price">₺—</div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-info">
+              <h3 class="product-name">Ekstra Yeşillik</h3>
+              <p class="product-description">
+                Marul, maydanoz ve limon.
+              </p>
+            </div>
+            <div class="price">₺—</div>
+          </article>
+
+        </div>
+
+      </section>
+
+      <aside class="notice">
+        <strong>Yüzde Yüz Doğal • El Yapımı</strong>
+        <span>
+          Ürün içerikleri ve fiyatlar işletme tarafından güncellenebilir.
+        </span>
+      </aside>
+
+      <footer class="footer-actions">
+
+        <a href="index.html">
+          ← Giriş Sayfası
+        </a>
+
+        <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
+          ↑ Yukarı Çık
+        </a>
+
+      </footer>
+
+    </div>
+
+  </main>
+
+</body>
+</html>

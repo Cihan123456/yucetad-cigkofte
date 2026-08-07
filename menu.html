@@ -490,8 +490,11 @@
       activeIndex = index;
 
       slides.forEach((slide, slideIndex) => {
-        slide.classList.toggle("active", slideIndex === activeIndex);
-      });
+  const isActive = slideIndex === activeIndex;
+
+  slide.classList.toggle("active", isActive);
+  slide.style.pointerEvents = isActive ? "auto" : "none";
+});
 
       dots.forEach((dot, dotIndex) => {
         dot.classList.toggle("active", dotIndex === activeIndex);

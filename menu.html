@@ -487,6 +487,40 @@
     });
 
     showSlide(0);
+      // ===== PARMAKLA SAYFA KAYDIRMA (SWIPE) =====
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener(
+  "touchstart",
+  (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  },
+  { passive: true }
+);
+
+document.addEventListener(
+  "touchend",
+  (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+
+    const distance = touchStartX - touchEndX;
+
+    // 60 pikselden küçük hareketleri yok say
+    if (Math.abs(distance) < 60) return;
+
+    // Sola kaydır → Sonraki sayfa
+    if (distance > 0 && activeIndex < slides.length - 1) {
+      showSlide(activeIndex + 1);
+    }
+
+    // Sağa kaydır → Önceki sayfa
+    if (distance < 0 && activeIndex > 0) {
+      showSlide(activeIndex - 1);
+    }
+  },
+  { passive: true }
+);       
   </script>
 
 </body>

@@ -309,6 +309,62 @@
         animation: none;
       }
     }
+
+    /* 9. sayfa: güvenli tıklama alanları */
+    .contact-image-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .contact-hotspot {
+      position: absolute;
+      display: block;
+      z-index: 5;
+      background: transparent;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Tıklama alanları yalnızca görselin üzerindedir; gezinme çubuğu her zaman üstte kalır. */
+    .navigation {
+      z-index: 1000;
+    }
+
+    .contact-phone-1 {
+      left: 20%;
+      top: 47.5%;
+      width: 42%;
+      height: 5.5%;
+    }
+
+    .contact-phone-2 {
+      left: 20%;
+      top: 62.8%;
+      width: 42%;
+      height: 5.5%;
+    }
+
+    .contact-phone-3 {
+      left: 20%;
+      top: 77.8%;
+      width: 42%;
+      height: 5.5%;
+    }
+
+    .contact-instagram-logo {
+      left: 74%;
+      top: 42.8%;
+      width: 13%;
+      height: 10.5%;
+    }
+
+    .contact-instagram-name {
+      left: 66%;
+      top: 53.5%;
+      width: 31%;
+      height: 5.5%;
+    }
+
   </style>
 </head>
 
@@ -390,11 +446,47 @@
     </article>
       <!-- 9. SAYFA: SİPARİŞ & İLETİŞİM -->
 <article class="slide">
+  <div class="contact-image-wrap">
     <img
-        src="images/iletisim-kapak.png"
-        alt="Yüce Tat Sipariş ve İletişim"
-        class="menu-image"
+      src="images/iletisim-kapak.png"
+      alt="Yüce Tat Sipariş ve İletişim"
+      class="menu-image"
     >
+
+    <a
+      class="contact-hotspot contact-phone-1"
+      href="tel:+905525623502"
+      aria-label="Altıntaş şubesini ara"
+    ></a>
+
+    <a
+      class="contact-hotspot contact-phone-2"
+      href="tel:+902322623502"
+      aria-label="Doğanay şubesini ara"
+    ></a>
+
+    <a
+      class="contact-hotspot contact-phone-3"
+      href="tel:+902322253502"
+      aria-label="Altınordu şubesini ara"
+    ></a>
+
+    <a
+      class="contact-hotspot contact-instagram-logo"
+      href="https://www.instagram.com/adiyamanli.mehmet.usta?igsh=MW90aTM0MnFhdGQ5bA=="
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Adıyamanlı Mehmet Usta Instagram"
+    ></a>
+
+    <a
+      class="contact-hotspot contact-instagram-name"
+      href="https://www.instagram.com/adiyamanli.mehmet.usta?igsh=MW90aTM0MnFhdGQ5bA=="
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Adıyamanlı Mehmet Usta Instagram"
+    ></a>
+  </div>
 </article>
     </section>
 

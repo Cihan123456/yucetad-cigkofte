@@ -389,7 +389,7 @@
         >
     </article>
 <!-- 9. SAYFA: SİPARİŞ & İLETİŞİM -->
-<article class="slide">
+<article class="slide" id="contactSlide">
 
   <div style="position:relative; display:inline-block; max-width:100%; line-height:0;">
 
@@ -498,7 +498,11 @@
       });
 
       currentPage.textContent = activeIndex + 1;
+const contactLinks = document.querySelectorAll("#contactSlide a");
 
+contactLinks.forEach(link => {
+  link.style.pointerEvents = activeIndex === 8 ? "auto" : "none";
+});
       previousButton.disabled = activeIndex === 0;
       nextButton.disabled = activeIndex === slides.length - 1;
 

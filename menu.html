@@ -388,51 +388,17 @@
             class="menu-image"
         >
     </article>
-<!-- 9. SAYFA: SİPARİŞ & İLETİŞİM -->
-<article class="slide" id="contactSlide">
-
-  <div style="position:relative; display:inline-block; max-width:100%; line-height:0;">
-
+      <!-- 9. SAYFA: SİPARİŞ & İLETİŞİM -->
+<article class="slide">
     <img
-      src="images/iletisim-kapak.png"
-      alt="Yüce Tat Sipariş ve İletişim"
-      class="menu-image"
+        src="images/iletisim-kapak.png"
+        alt="Yüce Tat Sipariş ve İletişim"
+        class="menu-image"
     >
-
-    <!-- ALTINTAŞ TELEFON -->
-    <a
-      href="tel:+905525623502"
-      aria-label="Altıntaş şubesini ara"
-      style="position:absolute; left:10%; top:38%; width:52%; height:12%; z-index:10;"
-    </a>
-
-    <!-- DOĞANAY TELEFON -->
-    <a
-      href="tel:+902322623502"
-      aria-label="Doğanay şubesini ara"
-      style="position:absolute; left:10%; top:53%; width:52%; height:12%; z-index:10;"
-    </a>
-
-    <!-- ALTINORDU TELEFON -->
-    <a
-      href="tel:+902322253502"
-      aria-label="Altınordu şubesini ara"
-      style="position:absolute; left:10%; top:68%; width:52%; height:12%; z-index:10;"
-    </a>
-<!-- INSTAGRAM -->
-<a
-  href="https://www.instagram.com/adiyamanli.mehmet.usta?igsh=MW90aTM0MnFhdGQ5bA=="
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Instagram Sayfası"
-  style="position:absolute; left:67%; top:40%; width:24%; height:14%; z-index:10;"
-</a>
-  </div>
-
 </article>
     </section>
 
-    <nav class="navigation" aria-label="Menü sayfası geçişleri" style="position:relative; z-index:9999;">
+    <nav class="navigation" aria-label="Menü sayfası geçişleri">
 
       <button
         type="button"
@@ -490,22 +456,15 @@
       activeIndex = index;
 
       slides.forEach((slide, slideIndex) => {
-  const isActive = slideIndex === activeIndex;
-
-  slide.classList.toggle("active", isActive);
-  slide.style.pointerEvents = isActive ? "auto" : "none";
-});
+        slide.classList.toggle("active", slideIndex === activeIndex);
+      });
 
       dots.forEach((dot, dotIndex) => {
         dot.classList.toggle("active", dotIndex === activeIndex);
       });
 
       currentPage.textContent = activeIndex + 1;
-const contactLinks = document.querySelectorAll("#contactSlide a");
 
-contactLinks.forEach(link => {
-  link.style.pointerEvents = activeIndex === 8 ? "auto" : "none";
-});
       previousButton.disabled = activeIndex === 0;
       nextButton.disabled = activeIndex === slides.length - 1;
 
